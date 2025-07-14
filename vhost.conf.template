@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName {{DOMAIN}}
+    
+    # Redirect all HTTP traffic to HTTPS
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    
+    ErrorLog ${APACHE_LOG_DIR}/{{DOMAIN}}_error.log
+    CustomLog ${APACHE_LOG_DIR}/{{DOMAIN}}_access.log combined
+</VirtualHost>
+
+# SSL VirtualHost will be automatically configured by certbot

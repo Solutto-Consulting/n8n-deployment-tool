@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Restore script for n8n PostgreSQL database
+# Usage: ./restore-db.sh <backup_file.sql.gz>
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check if backup file is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <backup_file.sql.gz>"
+    echo "Available backups:"
+    ls -la "$SCRIPT_DIR/backup/n8n_backup_"*.sql.gz 2>/dev/null || echo "No backups found"
+    exit 1
+fi
+
+BACKUP_FILE="$1"
+CONTAINER_NAME="$(basename $SCRIPT_DIR)_postgres_1"
+DB_NAME="n8n"
+DB_USER="n8n"
+
+# Check if backup file exists
+if [ ! -f "$BACKUP_FILE" ]; then
+    echo "Error: Backup file '$BACKUP_FILE' not found!"
+    exit 1
+fi
+
+echo "Restoring n8n database from: $BACKUP_FILE"
+
+# Stop n8n service to prevent conflicts
+echo "Stopping n8n service..."
+cd "$SCRIPT_DIR"
+docker-compose stop n8n
+
+# Restore database
+echo "Restoring database..."
+if [[ "$BACKUP_FILE" == *.gz ]]; then
+    # If file is compressed
+    gunzip -c "$BACKUP_FILE" | docker exec -i "$CONTAINER_NAME" psql -U "$DB_USER" -d "$DB_NAME"
+else
+    # If file is not compressed
+    docker exec -i "$CONTAINER_NAME" psql -U "$DB_USER" -d "$DB_NAME" < "$BACKUP_FILE"
+fi
+
+# Start n8n service
+echo "Starting n8n service..."
+docker-compose start n8n
+
+echo "Database restore completed successfully!"

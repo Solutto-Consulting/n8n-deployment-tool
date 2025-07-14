@@ -1,0 +1,9 @@
+{
+  "domain": "your-domain.com",
+  "email": "admin@your-domain.com",
+  "postgres_password": "your_secure_postgres_password_here",
+  "n8n_basic_auth_user": "admin",
+  "n8n_basic_auth_password": "your_secure_n8n_password_here",
+  "timezone": "UTC",
+  "project_name": "n8n-automation"
+}
