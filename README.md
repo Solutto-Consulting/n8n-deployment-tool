@@ -1,5 +1,12 @@
 # N8N Production Environment with Docker & SSL
 
+**Created by Gilson Rincón, CEO and Co-founder of Solutto Consulting LLC**  
+**Solutto Consulting LLC - https://www.soluttoconsulting.com**
+
+*Licensed under the MIT License. See [LICENSE](LICENSE) file for complete terms and conditions.*
+
+---
+
 A production-ready n8n setup with PostgreSQL, Apache reverse proxy, and automatic SSL certificates using Let's Encrypt.
 
 ## Features
@@ -10,6 +17,47 @@ A production-ready n8n setup with PostgreSQL, Apache reverse proxy, and automati
 - **Apache Reverse Proxy**: With security headers and WebSocket support
 - **Database Backups**: Automated backup and restore scripts
 - **Template-based Setup**: Easy configuration with JSON templates
+
+## 📋 About This Project
+
+This n8n production deployment tool is developed by **Gilson Rincón**, CEO and Co-founder of **Solutto Consulting LLC**. We specialize in business automation, ERP implementations, and cloud infrastructure solutions.
+
+### 🏢 Solutto Consulting LLC
+
+We help businesses streamline their operations through automation and modern technology solutions. Our expertise includes:
+
+- **Business Process Automation**: n8n, Zapier, and custom workflow solutions
+- **ERP Implementation**: Odoo deployment and customization
+- **Cloud Infrastructure**: Docker, Kubernetes, and cloud platform management
+- **DevOps Solutions**: CI/CD pipelines and infrastructure automation
+
+**Visit us at**: [https://www.soluttoconsulting.com](https://www.soluttoconsulting.com)
+
+### 🚀 Recommended Hosting for Your n8n Instance
+
+For reliable and cost-effective hosting of your n8n production environment, we recommend **Hetzner Cloud**:
+
+**[🔗 Get Hetzner Cloud with €20 Credit (Affiliate Link)](https://hetzner.cloud/?ref=your-hetzner-ref-id)**
+
+**Why Hetzner Cloud?**
+- **Excellent Performance**: High-performance SSD storage and fast network
+- **Competitive Pricing**: Best price-to-performance ratio in the market
+- **European Infrastructure**: GDPR-compliant with data centers in Germany and Finland
+- **Simple Setup**: Perfect for Docker-based deployments like this n8n setup
+- **24/7 Support**: Professional support when you need it
+
+*Recommended specs for n8n production:*
+- **CPX21**: 3 vCPUs, 4GB RAM, 80GB SSD (~€4.51/month)
+- **CPX31**: 4 vCPUs, 8GB RAM, 160GB SSD (~€8.21/month)
+
+### ⚠️ Important Disclaimers
+
+- **No Warranty**: This software is provided "AS IS" without warranty of any kind
+- **User Responsibility**: You are responsible for testing and validating the setup before production use
+- **Security**: Always follow security best practices and keep your systems updated
+- **Backup**: Regular backups are essential - test your restore procedures regularly
+
+---
 
 ## Quick Start
 
@@ -24,6 +72,8 @@ cd n8n-production
 cp setup.json.template setup.json
 nano setup.json
 ```
+
+> 💡 **Hosting Recommendation**: Need a server? Get [Hetzner Cloud with €20 free credit](https://hetzner.cloud/?ref=your-hetzner-ref-id) - perfect for n8n deployments!
 
 ### 2. Configure setup.json
 
@@ -256,6 +306,34 @@ For development, consider:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👨‍💼 About the Author
+
+**Gilson Rincón**  
+CEO and Co-founder of Solutto Consulting LLC
+
+Gilson is a seasoned technology professional with extensive experience in business automation, ERP systems, and cloud infrastructure. He specializes in helping businesses optimize their operations through modern technology solutions.
+
+**Connect with Gilson:**
+- 🌐 Website: [https://www.soluttoconsulting.com](https://www.soluttoconsulting.com)
+- 💼 LinkedIn: [Connect with Gilson Rincón](https://linkedin.com/in/gilson-rincon)
+- 📧 Email: [gilson.rincon@soluttoconsulting.com](mailto:gilson.rincon@soluttoconsulting.com)
+
+### 🤝 Professional Services
+
+Need help with your n8n deployment or business automation? Solutto Consulting LLC offers:
+
+- **n8n Custom Setup & Configuration**: Professional deployment and optimization
+- **Workflow Development**: Custom automation workflows for your business needs
+- **Integration Services**: Connect n8n with your existing business systems
+- **Training & Support**: Team training and ongoing technical support
+- **Cloud Infrastructure**: Complete hosting and infrastructure management
+
+**Contact us for a consultation**: [https://www.soluttoconsulting.com/contact](https://www.soluttoconsulting.com/contact)
+
+---
+
+*© 2025 Solutto Consulting LLC. All rights reserved.*
 
 ## Acknowledgments
 

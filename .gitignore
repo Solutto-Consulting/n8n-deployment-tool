@@ -6,6 +6,10 @@ setup.json
 backup-db.sh
 restore-db.sh
 
+# Notes and preparation files (not for public repo)
+PUBLISH_NOTES.md
+*.notes
+
 # Docker volumes and data
 data/
 backup/*.sql
