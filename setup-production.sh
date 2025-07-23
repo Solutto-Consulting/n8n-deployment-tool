@@ -107,7 +107,14 @@ if [ -f "$SCRIPT_DIR/.env.template" ]; then
         -e "s/{{N8N_BASIC_AUTH_USER}}/$N8N_BASIC_AUTH_USER/g" \
         -e "s/{{N8N_BASIC_AUTH_PASSWORD}}/$N8N_BASIC_AUTH_PASSWORD/g" \
         -e "s/{{TIMEZONE}}/$TIMEZONE/g" \
+        -e "s/{{DOMAIN_NAME}}/$DOMAIN/g" \
         "$SCRIPT_DIR/.env.template" > "$SCRIPT_DIR/.env"
+    
+    # Add DOMAIN_NAME to .env file if not already present in template
+    if ! grep -q "DOMAIN_NAME=" "$SCRIPT_DIR/.env"; then
+        echo "DOMAIN_NAME=$DOMAIN" >> "$SCRIPT_DIR/.env"
+    fi
+    
     print_status ".env file created successfully"
 else
     print_error ".env.template not found!"

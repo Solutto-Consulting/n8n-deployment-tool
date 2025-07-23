@@ -65,15 +65,15 @@ For reliable and cost-effective hosting of your n8n production environment, we r
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd n8n-production
+git clone git@github.com:Solutto-Consulting/n8n-deployment-tool.git
+cd n8n-deployment-tool
 
 # Copy and configure the setup file
 cp setup.json.template setup.json
 nano setup.json
 ```
 
-> 💡 **Hosting Recommendation**: Need a server? Get [Hetzner Cloud with €20 free credit](https://hetzner.cloud/?ref=your-hetzner-ref-id) - perfect for n8n deployments!
+> 💡 **Hosting Recommendation**: Need a server? Get [Hetzner Cloud with €20 free credit](https://hetzner.cloud/?ref=wXmhFZiVG5Ev) - perfect for n8n deployments!
 
 ### 2. Configure setup.json
 
