@@ -100,6 +100,16 @@ apt install -y apache2 certbot python3-certbot-apache docker.io docker-compose j
 print_status "Enabling Apache modules..."
 a2enmod ssl rewrite proxy proxy_http proxy_wstunnel headers
 
+# Create Docker network if it doesn't exist
+print_status "Setting up Docker network..."
+if ! docker network inspect solutto-internal >/dev/null 2>&1; then
+    print_status "Creating solutto-internal Docker network..."
+    docker network create solutto-internal
+    print_status "Docker network 'solutto-internal' created successfully"
+else
+    print_status "Docker network 'solutto-internal' already exists"
+fi
+
 # Create environment file from template
 print_status "Creating .env file from template..."
 if [ -f "$SCRIPT_DIR/.env.template" ]; then
@@ -151,15 +161,20 @@ print_status "Starting Apache..."
 systemctl enable apache2
 systemctl start apache2
 
+# Create docker-compose.yml from template
+print_status "Creating docker-compose.yml from template..."
+if [ -f "$SCRIPT_DIR/docker-compose.yml.template" ]; then
+    sed -e "s/{{DOMAIN_NAME}}/$DOMAIN/g" \
+        "$SCRIPT_DIR/docker-compose.yml.template" > "$SCRIPT_DIR/docker-compose.yml"
+    print_status "docker-compose.yml created successfully"
+else
+    print_error "docker-compose.yml.template not found!"
+    exit 1
+fi
+
 # Start Docker containers
 print_status "Starting Docker containers..."
 cd "$SCRIPT_DIR"
-
-# Check if docker-compose.yml exists
-if [ ! -f "docker-compose.yml" ]; then
-    print_error "docker-compose.yml not found in $SCRIPT_DIR"
-    exit 1
-fi
 
 # Start the containers
 docker-compose up -d

@@ -37,6 +37,7 @@ process_template() {
     fi
     
     sed -e "s/{{DOMAIN}}/test.example.com/g" \
+        -e "s/{{DOMAIN_NAME}}/test.example.com/g" \
         -e "s/{{EMAIL}}/test@example.com/g" \
         -e "s/{{POSTGRES_PASSWORD}}/test_postgres_password/g" \
         -e "s/{{N8N_BASIC_AUTH_USER}}/testuser/g" \
@@ -52,6 +53,7 @@ process_template() {
 echo "Generating test files from templates..."
 
 process_template "$SCRIPT_DIR/.env.template" "$TEST_DIR/.env"
+process_template "$SCRIPT_DIR/docker-compose.yml.template" "$TEST_DIR/docker-compose.yml"
 process_template "$SCRIPT_DIR/vhost.conf.template" "$TEST_DIR/vhost.conf"
 process_template "$SCRIPT_DIR/vhost-ssl.conf.template" "$TEST_DIR/vhost-ssl.conf"
 process_template "$SCRIPT_DIR/backup-db.sh.template" "$TEST_DIR/backup-db.sh"

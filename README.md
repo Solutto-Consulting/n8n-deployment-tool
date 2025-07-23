@@ -108,6 +108,7 @@ sudo ./setup-production.sh
 
 The script will:
 - Install required packages (Apache, Docker, Certbot)
+- Create Docker network (`solutto-internal`) if it doesn't exist
 - Generate configuration files from templates
 - Set up Apache virtual hosts
 - Start Docker containers
@@ -126,12 +127,14 @@ Login with the credentials from your `setup.json` file.
 ```
 ├── setup.json.template          # Configuration template
 ├── setup-production.sh          # Main setup script
-├── docker-compose.yml           # Docker services configuration
+├── docker-compose.yml.template  # Docker services configuration template
 ├── .env.template                # Environment variables template
 ├── vhost.conf.template          # Apache HTTP virtual host template
 ├── vhost-ssl.conf.template      # Apache HTTPS virtual host template
 ├── backup-db.sh.template        # Database backup script template
 ├── restore-db.sh.template       # Database restore script template
+├── test-templates.sh            # Template validation script
+├── validate-setup.sh            # Setup validation script
 ├── .gitignore                   # Git ignore rules
 └── README.md                    # This file
 ```
@@ -140,7 +143,8 @@ Login with the credentials from your `setup.json` file.
 
 After running setup, these files will be created:
 - `setup.json` - Your configuration
-- `.env` - Environment variables
+- `docker-compose.yml` - Generated from template
+- `.env` - Environment variables generated from template
 - `backup-db.sh` - Database backup script
 - `restore-db.sh` - Database restore script
 
@@ -263,6 +267,11 @@ sudo crontab -e
 - Check PostgreSQL container: `docker-compose logs postgres`
 - Verify environment variables in `.env`
 - Ensure database is healthy: `docker-compose ps`
+
+**Docker Network Issues**
+- Verify the `solutto-internal` network exists: `docker network ls`
+- If missing, create it manually: `docker network create solutto-internal`
+- Check network connectivity between containers: `docker network inspect solutto-internal`
 
 **X-Frame-Options Conflicts (Chrome Console Error)**
 If you see "Refused to display in a frame because it set multiple 'X-Frame-Options' headers":
