@@ -37,7 +37,7 @@ We help businesses streamline their operations through automation and modern tec
 
 For reliable and cost-effective hosting of your n8n production environment, we recommend **Hetzner Cloud**:
 
-**[🔗 Get Hetzner Cloud with €20 Credit (Affiliate Link)](https://hetzner.cloud/?ref=your-hetzner-ref-id)**
+**[🔗 Get Hetzner Cloud with €20 Credit (Affiliate Link)](https://hetzner.cloud/?ref=wXmhFZiVG5Ev)**
 
 **Why Hetzner Cloud?**
 - **Excellent Performance**: High-performance SSD storage and fast network
@@ -263,6 +263,17 @@ sudo crontab -e
 - Check PostgreSQL container: `docker-compose logs postgres`
 - Verify environment variables in `.env`
 - Ensure database is healthy: `docker-compose ps`
+
+**X-Frame-Options Conflicts (Chrome Console Error)**
+If you see "Refused to display in a frame because it set multiple 'X-Frame-Options' headers":
+- This occurs when both Apache and n8n set conflicting X-Frame-Options headers
+- The provided Apache configuration automatically resolves this by using `Header always unset X-Frame-Options` followed by setting `SAMEORIGIN`
+- If you modify the Apache config, ensure you unset the header from the backend before setting your own
+
+**Performance Issues**
+- Monitor resource usage: `docker stats`
+- Check n8n execution logs: `docker-compose logs n8n`
+- Consider upgrading server specs if workflows are complex
 
 ### Log Locations
 - Apache logs: `/var/log/apache2/`
